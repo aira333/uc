@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # UC ORB - University of California Open Source Repository Browser
 
 UC ORB is a pioneering tool that showcases and categorizes open-source projects across the University of California system. With a strong commitment to open-source innovation, the UC system is advancing efforts to make software more accessible, transparent, and collaborative. This initiative, in partnership with the UC Network of Open Source Program Offices (OSPOs), brings together six campuses to promote open-source research, drive sustainable development, and set new standards for open collaboration in academia.
