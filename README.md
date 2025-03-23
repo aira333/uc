@@ -1,37 +1,23 @@
-# UC ORB - University of California Open Source Repository Browser
+# UC ORB - University of California Open Source Repository Browser ( a demo for GSOC - 2025 )🌻
 
-UC ORB is a pioneering tool that showcases and categorizes open-source projects across the University of California system. With a strong commitment to open-source innovation, the UC system is advancing efforts to make software more accessible, transparent, and collaborative. This initiative, in partnership with the UC Network of Open Source Program Offices (OSPOs), brings together six campuses to promote open-source research, drive sustainable development, and set new standards for open collaboration in academia.
+🔮UC ORB is a pioneering tool that showcases and categorizes open-source projects across the University of California system. With a strong commitment to open-source innovation, the UC system is advancing efforts to make software more accessible, transparent, and collaborative. This initiative, in partnership with the UC Network of Open Source Program Offices (OSPOs), brings together six campuses to promote open-source research, drive sustainable development, and set new standards for open collaboration in academia.
 
 ## Overview
 
-We are dedicated to strengthening the open-source ecosystem within the UC system and beyond. By serving as a central hub, it amplifies the impact of UC’s open-source contributions, nurtures collaboration among researchers and developers, and champions a culture of transparency and innovation. Committed to sustainability and knowledge sharing, UC ORB aspires to set a new standard for institutions looking to embrace and enhance open-source discovery.
+✨The UC ORB web application provides an intuitive interface for exploring open-source projects across the UC system. It enhances the visibility of UC's open-source contributions, fosters collaboration among researchers and developers, and serves as a model for other institutions aiming to improve open-source discovery and sustainability.
 
-## Tech Stack
+---
 
-### Frontend
-- **React 18**: Core UI library
-- **TypeScript**: Type-safe JavaScript superset
-- **Vite**: Fast, modern frontend build tool
-- **React Router**: Client-side routing
-- **TanStack Query (React Query)**: Data fetching and state management
-- **shadcn/ui**: Component library based on Radix UI
-- **Tailwind CSS**: Utility-first CSS framework
-- **Lucide React**: Lightweight icon library
+## High-Level Design (HLD)
 
-### Tools & Utilities
-- **ESLint**: Static code analysis
-- **PostCSS**: CSS transformations
-- **clsx & tailwind-merge**: Utilities for conditional class names
+### Architecture Overview 🕸️
 
-## Features
+- **Frontend:** Built with React 18 and TypeScript using Vite as the build tool.
+- **Styling:** Tailwind CSS with shadcn/ui components based on Radix UI.
+- **State Management:** TanStack Query (React Query) for data fetching and caching.
+- **Routing:** React Router for client-side navigation.
 
-- **Responsive Design**: Works across desktop and mobile devices
-- **Project Discovery**: Browse and search through UC open source projects
-- **Advanced Filtering**: Filter projects by campus, programming language, topics, and more
-- **Project Details**: View comprehensive information about each project including contributors, README, and stats
-- **Modern UI**: Clean, accessible interface with smooth transitions and animations
-
-## Project Structure
+### File Structure 📂
 
 ```
 src/
@@ -53,6 +39,91 @@ src/
 └── main.tsx            # Application entry point
 ```
 
+### Architecture Diagram 🐢
+
+```
++----------------------------+
+|        User Interface      |
+|    (React + Tailwind CSS)  |
++------------+--------------+
+             |
+             v
++------------------+------------------+
+| React Router     |  State Management |
+| (Client-side Nav)| (React Query)     |
++------------------+------------------+
+              |
+              v
++------------------------------------+
+|         Data Fetching Layer        |
+| (Mock Data / API Integration)     |
++------------------------------------+
+```
+
+---
+
+## Low-Level Design (LLD) 🪼
+
+### Component Breakdown
+
+#### 1. `components/Layout/`
+- Contains layout components such as Header, Footer, and navigation elements.
+- Manages the general structure of the application.
+
+#### 2. `components/ui/`
+- Houses UI elements from shadcn/ui and custom-designed components.
+- Includes buttons, modals, input fields, and interactive elements.
+
+#### 3. `hooks/`
+- Custom hooks for data fetching, filtering, and state management.
+- Examples: `useProjects.ts` for project data, `useFilters.ts` for filtering options.
+
+#### 4. `lib/`
+- Utility functions and mock data for development purposes.
+- Examples: `data.ts` for mock project listings, `utils.ts` for helper functions.
+
+#### 5. `pages/`
+- Represents different views in the application:
+  - `Index.tsx` → Home page.
+  - `Browse.tsx` → Browse open-source projects.
+  - `ProjectDetail.tsx` → Detailed project information.
+  - `About.tsx` → About UC ORB.
+  - `NotFound.tsx` → 404 page.
+
+#### 6. `main.tsx & App.tsx`
+- `main.tsx` initializes the React app and mounts it to the DOM.
+- `App.tsx` acts as the root component, managing global layout and routes.
+
+### Data Flow 🐧
+
+```
+User Interaction → State Update → Data Fetching → UI Update
+```
+
+1. **User Interacts** → Clicks button, selects filters, navigates pages.
+2. **State Updates** → Managed by React Hooks and TanStack Query.
+3. **Data Fetching** → Retrieves project information from `lib/data.ts` (mock) or backend APIs.
+4. **UI Updates** → Components re-render based on new data.
+
+### Sequence Diagram 🐨
+
+```
+User → UI Component → State Management → Data Fetching → UI Update
+```
+1. User requests project data.
+2. UI component triggers a state update.
+3. React Query fetches data from API or mock data.
+4. Data is processed and stored.
+5. UI updates and displays results.
+
+---
+
+## Repository 🦋
+
+**GitHub:** [UC ORB Repository](https://github.com/aira333/uc)
+
+---
+
 ## Getting Started
 
 ### Prerequisites
@@ -62,83 +133,81 @@ src/
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone 'PASTE GITHUB URL'
-   cd uc-orb
-   ```
+Clone the repository:
 
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn
-   # or
-   pnpm install
-   ```
+```sh
+git clone https://github.com/aira333/uc.git
+cd uc
+```
 
-3. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
+Install dependencies:
 
-4. Open your browser and navigate to `http://localhost:8080`
+```sh
+npm install
+# or
+yarn
+# or
+pnpm install
+```
 
-## Building for Production
+Start the development server:
 
-1. Create a production build:
-   ```bash
-   npm run build
-   # or
-   yarn build
-   # or
-   pnpm build
-   ```
+```sh
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-2. Preview the production build:
-   ```bash
-   npm run preview
-   # or
-   yarn preview
-   # or
-   pnpm preview
-   ```
+Viola!!🥳 Open your browser and navigate to `http://localhost:8080`
 
-## Development Notes
+---
+
+## Building for Production 🖥️
+
+Create a production build:
+
+```sh
+npm run build
+# or
+yarn build
+# or
+pnpm build
+```
+
+Preview the production build:
+
+```sh
+npm run preview
+# or
+yarn preview
+# or
+pnpm preview
+```
+
+---
+
+## Development Notes 📜
 
 ### State Management
-- **TanStack Query**: Used for data fetching, caching, and state management
-- **React Hooks**: Local component state managed with useState and useEffect
-- **Custom Hooks**: Created for project data and filtering functionality
+
+- **TanStack Query:** Used for data fetching, caching, and state management.
+- **React Hooks:** Local component state managed with `useState` and `useEffect`.
+- **Custom Hooks:** Created for project data and filtering functionality.
 
 ### Styling
--  **Tailwind CSS**: Used for responsive design and styling
-- **Glass Morphism**: Applied for modern UI elements
-- **Transitions & Animations**: Smooth user interactions and loading states
 
-### Data Flow
-- Currently using mock data in `lib/data.ts`
-- Ready for integration with backend services - PostgreSQL (through a Node.js backend)
-- Type-safe data handling with TypeScript interfaces
+- **Tailwind CSS:** Used for responsive design and styling.
+- **Glass Morphism:** Applied for modern UI elements.
+- **Transitions & Animations:** Smooth user interactions and loading states.
 
-## Browser Support
+---
 
-The application is built to support modern browsers:
-- Chrome/Edge (latest 2 versions)
-- Firefox (latest 2 versions)
-- Safari (latest 2 versions)
+## Next Steps 🐣
 
-## Contributing
+- Integrate with backend APIs for live project data.
+- Optimize state management and caching strategies.
+- Enhance UI with more interactive elements and animations.
 
-We welcome contributions🥳✨! Please read our contributing guidelines before submitting pull requests.
-
-## Acknowledgments
-
-- UC Network of Open Source Program Offices
-- The participating UC campuses
-- All contributors to the project
-
+---
